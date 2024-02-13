@@ -1,0 +1,43 @@
+{% extends 'Product/base.html' %} {% block title %}Cart| Emart{% endblock title %} {% block body %}
+
+
+<div class="container text-center" style="justify-content: center;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+    <h1>Your Cart</h1>
+    <hr style="width: 20%;height:4px;border-width:0;;background-color:rgb(0, 199, 209);margin-left: 40%;"> {% for cart_product in cart_product %}
+    <div class="row text-center" style="justify-content: center;">
+        <div class="col-md-3">
+            <img src="{{cart_product.product.product_image.url}}" alt="" srcset="" style="height: 200px;width: 200px;">
+        </div>
+        <div class="col-md-3">
+            <br>
+
+            <h5>{{cart_product.product.product_name}}</h5>
+
+            <p>
+                <h6> Price : {{cart_product.product.product_price}} Rs</h6>
+            </p>
+            <p>
+
+                <form method="post" action="{% url 'User:update_quantity' cart_product.id %}">
+                    {% csrf_token %}
+                    <h6> Quantity : <input type="number" name="quantity" value="{{ cart_product.quantity }}" min="1" style="width: 35px;"></h6>
+                    <button type="submit" class="btn btn-success ">Update Quantity</button>
+                </form>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <br>
+            <br> <a href="{% url 'User:remove_cart' cart_product.product.id %}" class="btn btn-danger">Remove</a><br><br>
+
+        </div>
+        <hr style="width: 50%;"> {% endfor %}
+        <h4> Total Cart Price : <span style="color: red;">{{total_price}} Rs</span></h4>
+        <button type="submit" class="btn btn-warning "> <a href="{% url 'User:checkout' %}" style="text-decoration: none;color: white;">Checkout</button></a>
+    </div>
+
+
+
+
+</div>
+
+{% endblock body %}

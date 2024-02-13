@@ -1,0 +1,45 @@
+{% extends 'Product/base.html' %} {% block title %}Cart| Emart{% endblock title %} {% block body %}
+
+
+<div class="container text-center">
+    <br>
+    <h2 class="text center" style=" color: brown;">Invoice</h2>
+    <hr style="width: 20%;height:4px;border-width:0;;background-color:rgb(0, 199, 209);margin-left: 40%;">
+
+    <p>{{user.username}} , Here is details for your order </p>
+    <p>Order Id : {{ order.id }}</p>
+    <form method="post" style="justify-content: center;">
+        {% csrf_token %}
+        <!-- Display cart items and total price -->
+        <h6 style="color: darkred;">Product Details</h6>
+        <br> {% for order_item in order.orderitem_set.all %}
+        <p> {{forloop.counter}}. {{ order_item.product.product_name }} - {{ order_item.product.product_price }} x {{ order_item.quantity }} </p>
+        {% endfor %}
+        <span style="background-color: chartreuse;border: 1px soliod black;font-family:'Times New Roman', Times, serif;">Total Price: <span style="color: brown;">{{ order.total_price }} Rs</span></span>
+        <br>
+        <h6 style="color: darkred;">Shipping Details </h6>
+        <ul style="list-style: none;">
+            <li>Name : {{user.username}}</li>
+            <li> Contact : {{user.profile.contact}}</li>
+            <li> Address : {{user.profile.address}} </li>
+            <li>{{user.profile.locality}} , {{user.profile.city}}</li>
+            <li>{{user.profile.zipcode}}</li>
+        </ul>
+    </form>
+    <button class="btn btn-success" >  <a href="{% url 'User:generate_pdf' order.id %}" target="_blank" class="btn btn-primary">Download PDF</a>
+    </button>
+    <p style="color: red;">Note : Please keep your invoice copy with you for further need.</p>
+</div>
+
+
+<br><br><br>
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora perspiciatis illum optio sapiente veniam. Minima laborum unde nihil eum totam, blanditiis corporis, nam ea fugit velit dolores atque error molestiae?</p><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora perspiciatis illum optio sapiente veniam. Minima laborum unde nihil eum totam, blanditiis corporis, nam ea fugit velit dolores atque error molestiae?</p>
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora perspiciatis illum optio sapiente veniam. Minima laborum unde nihil eum totam, blanditiis corporis, nam ea fugit velit dolores atque error molestiae?</p>
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora perspiciatis illum optio sapiente veniam. Minima laborum unde nihil eum totam, blanditiis corporis, nam ea fugit velit dolores atque error molestiae?</p>
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora perspiciatis illum optio sapiente veniam. Minima laborum unde nihil eum totam, blanditiis corporis, nam ea fugit velit dolores atque error molestiae?</p>
+
+<!-- Display order details, including products, quantities, and total price -->
+
+
+
+{% endblock body %}

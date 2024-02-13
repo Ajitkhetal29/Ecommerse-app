@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <!-- Include your stylesheets or inline styles here -->
+</head>
+<body>
+    <h2>Invoice</h2>
+    <p>{{user.username}} , Here is details for your order </p>
+    <p>Order Id : {{ order.id }}</p>
+    <form method="post" style="justify-content: center;">
+        {% csrf_token %}
+        <!-- Display cart items and total price -->
+        <h6 style="color: darkred;">Product Details</h6>
+        <br> {% for order_item in order.orderitem_set.all %}
+        <p> {{forloop.counter}}. {{ order_item.product.product_name }} - {{ order_item.product.product_price }} x {{ order_item.quantity }} </p>
+        {% endfor %}
+        <span style="background-color: chartreuse;border: 1px soliod black;font-family:'Times New Roman', Times, serif;">Total Price: <span style="color: brown;">{{ order.total_price }} Rs</span></span>
+        <br>
+        <h6 style="color: darkred;">Shipping Details </h6>
+        <ul style="list-style: none;">
+            <li>Name : {{user.username}}</li>
+            <li> Contact : {{user.profile.contact}}</li>
+            <li> Address : {{user.profile.address}} </li>
+            <li>{{user.profile.locality}} , {{user.profile.city}}</li>
+            <li>{{user.profile.zipcode}}</li>
+        </ul>
+        <p style="color: red;">Note : Please keep your invoice copy with you for further need.</p>
+
+
+    <!-- Add content here using data from the order object -->
+</body>
+</html>

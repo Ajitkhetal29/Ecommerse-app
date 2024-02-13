@@ -1,0 +1,129 @@
+{% extends 'Product/base.html' %} {% block title %}Electrical | Emart{% endblock title %} {% block body %}
+
+<!-- style  -->
+<style>
+    .container .heading h3 {
+        font-size: 26px;
+        font-weight: 600;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+</style>
+<!-- style end -->
+<!-- heading -->
+<div class="container">
+    <div class="text-center heading">
+        <h3>Electricals</h3>
+    </div>
+    <hr style="width: 20%;height:4px;border-width:0;;background-color:rgb(0, 199, 209);margin-left: 40%;">
+</div>
+<!-- heading end -->
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+    
+    .price {
+        color: rgb(229, 89, 89);
+        font-size: 22px;
+    }
+    
+    .card button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+    
+    .card button:hover {
+        opacity: 0.7;
+        background-color: greenyellow;
+        color: black;
+    }
+</style>
+<!-- phone  -->
+<div>
+    <div class="container">
+        <div>
+            <h5 style="font-family: 'Roboto Condensed', sans-serif;font-size: 25px;font-weight: 600;">Trending Smartphones</h5>
+        </div>
+        <div class="row">
+            {% for i in product_list %} {% if i.product_category == 'Electricals' and i.product_sub_category == 'Mobile' %}
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{ i.product_image.url }}" alt="Denim Jeans" style="width:100%" height="400px">
+                    <h3>{{i.product_name}}</h3>
+                    <p class="price">Rs. {{i.product_price}}</p>
+                    <p>{{i.product_brand}}</p>
+                    <a href="{% url 'User:add_to_cart' i.id %}" style="text-decoration: none;color: white;" class=" btn btn-success">add to cart</a> 
+                </div>
+            </div>
+            {% endif %} {% endfor %}
+        </div>
+    </div>
+</div>
+<br>
+<!-- Phone end -->
+<!-- Laptop  -->
+
+<div>
+    <div class="container">
+        <div>
+            <h5 style="font-family: 'Roboto Condensed', sans-serif;font-size: 25px;font-weight: 600;">Latest Laptops</h5>
+        </div>
+        <div class="row">
+            {% for i in product_list %} {% if i.product_category == 'Electricals' and i.product_sub_category == 'Laptop' %}
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{ i.product_image.url }}" alt="Denim Jeans" style="width:100%" height="400px">
+                    <h3>{{i.product_name}}</h3>
+                    <p class="price">Rs. {{i.product_price}}</p>
+                    <p>{{i.product_brand}}</p>
+                    <a href="{% url 'User:add_to_cart' i.id %}" style="text-decoration: none;color: white;" class=" btn btn-success">add to cart</a> 
+                </div>
+            </div>
+            {% endif %} {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Laptop end -->
+
+<!-- Tv  -->
+<br>
+<div>
+    <div class="container">
+        <div>
+            <h5 style="font-family: 'Roboto Condensed', sans-serif;font-size: 25px;font-weight: 600;">Recommonded Tv </h5>
+        </div>
+        <div class="row">
+            {% for i in product_list %} {% if i.product_category == 'Electricals' and i.product_sub_category == 'Tv' %}
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{ i.product_image.url }}" alt="Denim Jeans" style="width:100%" height="380px">
+                    <h3>{{i.product_name}}</h3>
+                    <p class="price">Rs. {{i.product_price}}</p>
+                    <p>{{i.product_brand}}</p>
+                    <a href="{% url 'User:add_to_cart' i.id %}" style="text-decoration: none;color: white;" class=" btn btn-success">add to cart</a> 
+                </div>
+            </div>
+            {% endif %} {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- tv end -->
+
+
+
+
+
+
+{% endblock body %}
